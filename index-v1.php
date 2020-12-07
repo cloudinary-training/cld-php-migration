@@ -8,9 +8,9 @@ echo '<p>Hello World</p>';
 
 require_once __DIR__ . '/vendor/autoload.php';
 \Cloudinary::config(array(
-    'cloud_name' => 'dec-2020-test',
-    'api_key' => '552265519859882',
-    'api_secret' => 'zrs73txUXMnsO93hWxeiRWpTOFw'
+    'cloud_name' => 'CLOUD_NAME',
+    'api_key' => 'API_KEY',
+    'api_secret' => 'API_SECRET'
 ));
 
 

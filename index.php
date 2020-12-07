@@ -11,7 +11,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use \Cloudinary\Configuration\Configuration;
 
 
-Configuration::instance(['account' => ['cloud_name' => 'dec-2020-test', 'api_key' => '552265519859882', 'api_secret' => 'zrs73txUXMnsO93hWxeiRWpTOFw']]);
+Configuration::instance(['account' => ['cloud_name' => 'CLOUD_NAME', 'api_key' => 'API_KEY', 'api_secret' => 'API_SECRET']]);
 
 // do an upload
 //use Cloudinary\Api\Upload\UploadApi;
