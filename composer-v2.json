@@ -11,6 +11,6 @@
     }
   ],
   "require": {
-    "cloudinary/cloudinary_php": "^1.19"
+    "cloudinary/cloudinary_php": ">2.0.0-beta"
   }
 }

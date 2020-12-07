@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-echo '<p>Hello World</p>';
+echo '<p>Uncomment Code to see more</p>';
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -18,7 +18,7 @@ Configuration::instance(['account' => ['cloud_name' => 'CLOUD_NAME', 'api_key' =
 //$upload = new UploadApi();
 //
 //echo '<pre>';
-//echo json_encode($upload->upload('https://cloudinary-training.github.io/cld-advanced-concepts/assets/images/dolphin.jpg'),JSON_PRETTY_PRINT);
+//echo json_encode($upload->upload('https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png'),JSON_PRETTY_PRINT);
 //echo '</pre>';
 
 // admin api
@@ -43,7 +43,6 @@ Configuration::instance(['account' => ['cloud_name' => 'CLOUD_NAME', 'api_key' =
 //                "x"       => 5,
 //                "y"       => 5,
 //                "width"   => 50,
-//                "opacity" => 60,
 //                "effect"  => "brightness:200",
 //            ],
 //            ["angle" => 10],
