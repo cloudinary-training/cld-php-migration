@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-echo '<p>Uncomment Code to see more</p>';
+echo '<h1>SDK1: Uncomment Code to see more</h1>';
 
 require_once __DIR__ . '/vendor/autoload.php';
  \Cloudinary::config(array(
@@ -69,6 +69,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 //        ],
 //    ]
 //);
+
+//echo $image;
 
 //echo '<pre>';
 //echo $image;

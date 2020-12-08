@@ -14,6 +14,9 @@ The goal of this migration guide is to simplify migration. Therefore, we'll be d
 modifying existing SKD1 code to make it SDK2 compliant.  Cloudinary provides a full training course that looks deeper
 into SDK2 syntax. 
 
+## Advantage to Migrating to SDK2
+
+
 ## Contents
 The files that we'll be focusing on in this migration exercise are:
 
@@ -47,9 +50,89 @@ To install the PHP SDK execute the following:
 composer install
 ```
 
-### Running the SDK1 code
 
+With the SDK1 package installed, you should be able to run the `index-v1.php` web page and view in your browser.
+This syntax and the functions used should look familiar to a Cloudinary PHP developer and are provided as 
+a baseline for migrating the code.
 
+1. Load dependencies.
+```php
+require_once __DIR__ . '/vendor/autoload.php';
+```
+2. Provide Cloudinary credentials.
+```php
+ \Cloudinary::config(array(
+    'cloud_name' => 'CLOUD_NAME',
+    'api_key' => 'API_KEY',
+   'api_secret' => 'API_SECRET'
+));
+```
+3. Upload a Cloudinary Logo using the Upload API and view upload response on web page.
+```php
+$upload = new \Cloudinary\Uploader();
+echo '<pre>';
+print_r($upload->upload("https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png",
+['public_id'=>'cloudinary_icon_blue']));
+echo '</pre>';
+```
+4. Execute the resources function from the Admin API to view assets in the cloud on the web page.
+```php
+$api = new \Cloudinary\Api();
+echo '<pre>';
+print_r($api->resources());
+echo '</pre>';
+```
+5. Generate a URL using the URL helper utility and render the URL string on the web page.
+```php
+$url =  cloudinary_url(
+    "sample",
+    [
+        "secure" => true,
+        "transformation" => [
+            ["width" => 150, "height" => 150, "gravity" => "face", "crop" => "thumb"],
+            ["radius" => 20],
+            ["effect" => "sepia"],
+            [
+                "overlay" => "cloudinary_icon_blue",
+                "gravity" => "south_east",
+                "x"       => 5,
+                "y"       => 5,
+                "width"   => 50,
+                "effect"  => "brightness:200",
+            ],
+            ["angle" => 10],
+        ],
+    ]
+);
+echo $url;
+```
+6. Generate an image tag using the image tag helper utility and render the image on the web page.
+```php
+$image = cl_image_tag(
+    "sample",
+    [
+        "secure" => true,
+        "transformation" => [
+            ["width" => 150, "height" => 150, "gravity" => "face", "crop" => "thumb"],
+            ["radius" => 20],
+            ["effect" => "sepia"],
+            [
+                "overlay" => "cloudinary_icon_blue",
+                "gravity" => "south_east",
+                "x"       => 5,
+                "y"       => 5,
+                "width"   => 50,
+                "effect"  => "brightness:200",
+            ],
+            ["angle" => 10],
+        ],
+    ]
+);
+
+echo '<pre>';
+echo $image;
+echo '</pre>';
+```
 
 ## Migrate Cloudinary Using Composer
 
@@ -70,10 +153,104 @@ composer remove cloudinary/cloudinary_php
 composer require "cloudinary/cloudinary_php"
 ```
 
+## Running SDK2 Code
 
+We'll now execute SDK2 code to look at the different syntax for the same functionality as SDK1. This
+represents our successful code migration.
 
+1. Load dependencies.
+```php
+require_once __DIR__ . '/vendor/autoload.php';
+```
+2. Provide Cloudinary credentials and set up instance of Cloudinary.
+```php
+use \Cloudinary\Configuration\Configuration;
+Configuration::instance(['account' => ['cloud_name' => 'CLOUD_NAME', 'api_key' => 'API_KEY', 'api_secret' => 'API_SECRET']]);
+```
+3. Upload a Cloudinary Logo using the Upload API and view upload response on web page.  The SDK2 is object oriented and
+namespaced.  You will need to import classes with the `use` command.
+```php
+use Cloudinary\Api\Upload\UploadApi;
+$upload = new UploadApi();
+echo '<pre>';
+echo json_encode($upload->upload('https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png'),JSON_PRETTY_PRINT);
+echo '</pre>';
+```
+4. Execute the resources function from the Admin API to view assets in the cloud on the web page.
+```php
+use Cloudinary\Api\Admin\AdminApi;
+$api = new AdminApi();
+echo '<pre>';
+echo json_encode($api->resource('sample'),JSON_PRETTY_PRINT);
+echo '</pre>';
+```
+5. Generate a URL using the URL helper utility and render the URL string on the web page. The `Media.fromParams` 
+command can be used to generate a URL when you are working with the Cloudinary **instance**.  A *find/replace* 
+in your code will allow update from SDK 1 to SDK 2 by replacing `cloudinary_url` with `Media::fromParams`.  Then
+you can leave your transformation code spec the same.  
+```php
+use Cloudinary\Asset\Media;
+$url = Media::fromParams(
+    "sample",
+    [
+        "secure" => true,
+        "transformation" => [
+            ["width" => 150, "height" => 150, "gravity" => "face", "crop" => "thumb"],
+            ["radius" => 20],
+            ["effect" => "sepia"],
+            [
+                "overlay" => "cloudinary_icon_blue",
+                "gravity" => "south_east",
+                "x"       => 5,
+                "y"       => 5,
+                "width"   => 50,
+                "opacity" => 60,
+                "effect"  => "brightness:200",
+            ],
+            ["angle" => 10],
+        ],
+    ]
+);
+```
+6. Generate an image tag using the image tag helper utility and render the image on the web page. You can repalce
+`cl_image_tag` with `ImageTag::fromParams` to create an image tag in SDK2. In this case you would import the 
+`Cloudinary\Tag\ImageTag`.
+```php
+use Cloudinary\Tag\ImageTag;
+//
+$image = ImageTag::fromParams('sample',[
+    "secure" => true,
+    "transformation" => [
+        ["width" => 150, "height" => 150, "gravity" => "face", "crop" => "thumb"],
+        ["radius" => 20],
+        ["effect" => "sepia"],
+        [
+            "overlay" => "cloudinary_icon_blue",
+            "gravity" => "south_east",
+            "x"       => 5,
+            "y"       => 5,
+            "width"   => 50,
+            "opacity" => 60,
+            "effect"  => "brightness:200",
+        ],
+        ["angle" => 10],
+    ]
+]);
 
+echo $image;
+```
+7.  The PHP SDK2 functions return objects that also have functions. This makes it possible to chain your
+operations.  Chaining using SDK2 functions creates a natural flow when building transformations.  Because
+the code is Object Oriented, you IDE can help you with code completion.  You can take the output from a 
+`fromParams` function and chain SDK2 code.  Once you've migrated, this is a good way to start incorporating 
+new SDK2 syntax into existing code if you don't want to do a full rewrite, but want to start using SDK2 syntax.
 
+In this example we chain a `resize` function call on to the result of the image generator above.
+
+```php
+$image->scale(100);
+echo $image;
+```
 
 
 
