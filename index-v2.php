@@ -9,7 +9,8 @@ echo '<p>SDK2: Uncomment Code to see more</p>';
 require_once __DIR__ . '/vendor/autoload.php';
 
 use \Cloudinary\Configuration\Configuration;
-Configuration::instance(['account' => ['cloud_name' => 'CLOUD_NAME', 'api_key' => 'API_KEY', 'api_secret' => 'API_SECRET']]);
+// Configuration::instance(['account' => ['cloud_name' => 'CLOUD_NAME', 'api_key' => 'API_KEY', 'api_secret' => 'API_SECRET']]);
+//Configuration::instance();
 
 // Upload API
 //use Cloudinary\Api\Upload\UploadApi;
@@ -76,8 +77,8 @@ Configuration::instance(['account' => ['cloud_name' => 'CLOUD_NAME', 'api_key' =
 
 
 // v2 transformation example
-$image->scale(100);
-echo $image;
+//$image->scale(100);
+//echo $image;
 
 ?>
 </body>

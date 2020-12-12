@@ -67,6 +67,22 @@ require_once __DIR__ . '/vendor/autoload.php';
    'api_secret' => 'API_SECRET'
 ));
 ```
+Or,  if you have your export CLOUDINARY_URL in a .env file you can just execute the export 
+
+Contents of .env
+```bash
+export CLOUDINARY_URL=cloudinary://<api_key>:<api_secret>@<cloud_name>
+```
+
+```bash
+. ./.env
+```
+Then, in your Php SDK2 code you can create the instance without supplying credentials.
+
+```php
+Configuration::instance();
+```
+
 3. Upload a Cloudinary Logo using the Upload API and view upload response on web page.
 ```php
 $upload = new \Cloudinary\Uploader();
