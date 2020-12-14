@@ -183,8 +183,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use \Cloudinary\Configuration\Configuration;
 Configuration::instance(['account' => ['cloud_name' => 'CLOUD_NAME', 'api_key' => 'API_KEY', 'api_secret' => 'API_SECRET']]);
 ```
-3. Upload a Cloudinary Logo using the Upload API and view upload response on web page.  The SDK2 is object oriented and
-namespaced.  You will need to import classes with the `use` command.
+3. Upload a Cloudinary Logo using the Upload API and view upload response on web page.  The SDK2 is object oriented and name-spaced.  You will need to import classes with the `use` command.
 ```php
 use Cloudinary\Api\Upload\UploadApi;
 $upload = new UploadApi();
@@ -228,8 +227,7 @@ $url = Media::fromParams(
     ]
 );
 ```
-6. Generate an image tag using the image tag helper utility and render the image on the web page. You can repalce
-`cl_image_tag` with `ImageTag::fromParams` to create an image tag in SDK2. In this case you would import the 
+6. Generate an image tag using the image tag helper utility and render the image on the web page. You can replace `cl_image_tag` with `ImageTag::fromParams` to create an image tag in SDK2. In this case you would import the 
 `Cloudinary\Tag\ImageTag`.
 ```php
 use Cloudinary\Tag\ImageTag;
