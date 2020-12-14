@@ -1,5 +1,5 @@
 {
-  "name": "cloudinary/cloudinary_php_v1_sample",
+  "name": "cloudinary/cloudinary_php_v2_sample",
   "description": "Cloudinary PHP SDK Sample",
   "type": "project",
   "minimum-stability": "stable",
