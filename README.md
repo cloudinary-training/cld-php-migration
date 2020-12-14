@@ -1,7 +1,17 @@
 # PHP SDK2 Migration
 
-This repo contains code for the PHP SDK2 and SDK2 syntax. There are instructions in this document for migrating from SDK1 to SDK2.  
-Because the focus is on migration, a limited number of examples are provided for using the Upload API, Admin API, and transformations.  
+## Introduction 
+
+The biggest changes in the SDK2 are related to creating transformations.  This migration tutorial is provided to help you see how to upgrade without having to make a lot of changes to your existing transformation code.
+
+To avoid having to change a lot of transformation code in order to upgrade, we'll use the *singleton instance*. This will enable us to use the `fromParams` method of the *Media*, *ImageTag*, *VideoTag* and *VideoThumbnail* tag classes.  The *Media* class produces URLs and can work with video or image public ids. All of these Utility classes have a `fromParams` method that allows us to specify the transformations the way we did in SDK1 making the upgrade a lot easier.  You don't need a massive code overhaul to upgrade to SDK2.    
+
+You can take the course *Intro to Cloudinary Using PHP SDK2* through Cloudinary Training where you'll learn how to use the new transformation syntax.  The transformation syntax changes introduce Object Oriented classes that *enhance discoverability in your IDE*.  The syntax also provides *Method Chaining* which means that you don't need to work with large argument lists, but instead can chain together transformation options programmatically. 
+
+In this video we'll walk you through the upgrade process starting with an SDK1 PHP web page and ending with an SDK2 php webpage. During this process we'll look at sample code for configuring a singleton instance, the upload and admin APIs, as well as transformations created with the *instance* configuration.    
+This course is intentionally designed to be short to emphasize the ease with which you can upgrade to SDK2 and make your existing code work with minimal change.  
+
+## Configuration
 
 The Cloudinary PHP SDK2 provides 2 different methods for supply credentials and instantiate Cloudinary:
 1. A **constructor** function will allow for the creation of multiple instances of Cloudinary which enables the developer to access multiple clouds 
@@ -14,10 +24,8 @@ The goal of this migration guide is to simplify migration. Therefore, we'll be d
 modifying existing SKD1 code to make it SDK2 compliant.  Cloudinary provides a full training course that looks deeper
 into SDK2 syntax. 
 
-## Advantage to Migrating to SDK2
 
-
-## Contents
+## Course File Contents
 The files that we'll be focusing on in this migration exercise are:
 
 1. *index-v1.php*  
@@ -38,6 +46,9 @@ a developer would need to execute in order to migrate code from SDK1 to SDK2.
 
 We can move forward and backward by just uninstalling Cloudinary and the Reinstalling which ever SDK
 we want to work with.
+<p align="center">
+<img src="images/migration.jpg" alt="Move between SDK1 and SDK2" width="600" >
+</p>
 
 ## Running SDK1 Code as a Baseline 
 
@@ -150,7 +161,7 @@ echo $image;
 echo '</pre>';
 ```
 
-## Migrate Cloudinary Using Composer
+## Migrate From SDK1 to SDK2
 
 To upgrade from SDK1 to SDK2, remove Cloudinary and then install the 2.0 Beta.  The require
 object will be empty after the `remove` command
@@ -160,7 +171,8 @@ after the `require` command.
 ```bash
 composer remove cloudinary/cloudinary_php
 composer require "cloudinary/cloudinary_php:>2.0.0-beta"
-```
+```  
+
 You can always return to SDK1 by executing the `remove` command and the requiring the SDK1 version
 of Cloudinary.
 
