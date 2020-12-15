@@ -56,7 +56,7 @@ a developer would need to execute in order to migrate code from V1 to V2.
 
 We can move forward and backward by just uninstalling Cloudinary and the Reinstalling which ever version we want to work with.
 <p align="center">
-<img src="images/migration.jpg" alt="Move between V1 and V2" width="600" >
+<img src="images/migration.jpg" alt="Move between V1 and V2" width="800" >
 </p>
 
 ## Running V1 Code as a Baseline 
