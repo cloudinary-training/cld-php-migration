@@ -11,8 +11,8 @@ Here’s a mapping of V1 code to V2
 | V1  | V2 |
 | ------------- | ------------- |
 | Cloudinary::config  |Cloudinary\Configuration\Configuration or Configuration::instance|
-|new \Cloudinary\Uploader()::upload()  |Cloudinary\Api\Upload\UploadApi()->upload() |
-|new \Cloudinary\Api()->resources() |Cloudinary\Api\Admin\AdminApi()->resources()|
+|\Cloudinary\Uploader()::upload()  |(new Cloudinary\Api\Upload\UploadApi())->upload() |
+|(new \Cloudinary\Api())->resources() |(new Cloudinary\Api\Admin\AdminApi())->resources()|
 |cloudinary_url | Cloudinary\Asset\Media::fromParams()|
 |cl_image_tag |Cloudinary\Tag\ImageTag::fromParams() |
 |cl_video_tag |Cloudinary\Tag\VideoTag::fromParams() |

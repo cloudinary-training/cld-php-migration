@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-echo '<p>SDK2: Uncomment Code to see more</p>';
+echo '<h1>Cloudinary SDK V2</h1>';
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -14,10 +14,16 @@ use Cloudinary\Api\Upload\UploadApi;
 use Cloudinary\Api\Admin\AdminApi;
 
 
-Configuration::instance(['account' => ['cloud_name' => 'dec-2020-test', 'api_key' => '552265519859882', 'api_secret' => 'zrs73txUXMnsO93hWxeiRWpTOFw']]);
+Configuration::instance(['account' => [
+    'cloud_name' => 'CLOUD_NAME', 
+    'api_key' => 'API_KEY', 
+    'api_secret' => 'API_SECRET'
+    ]
+]);
 echo Configuration::instance()->account->cloudName;
 
 // Upload API
+echo '<h2>Upload API</h2>';
 $upload = new UploadApi();
 //
 echo '<pre>';
@@ -25,13 +31,14 @@ echo json_encode($upload->upload('https://cloudinary-training.github.io/cld-php-
 echo '</pre>';
 
 // Admin api
+echo '<h2>Admin API</h2>';
 $api = new AdminApi();
 
 echo '<pre>';
-echo json_encode($api->resource('sample'),JSON_PRETTY_PRINT);
+echo json_encode($api->resources(['max_results'=>1]),JSON_PRETTY_PRINT) . "\n";
 echo '</pre>';
 
-
+echo '<h2>Cloudinary URL</h2>';
 $url = Media::fromParams(
     "sample",
     [
@@ -78,10 +85,12 @@ $image = ImageTag::fromParams('sample',[
     ]
 ]);
 
+echo '<h2>Cloudinary Image</h2>';
 echo $image;
 echo '<br>';
 
 // v2 transformation example
+echo '<h2>Sneak Peak</h2>';
 echo $image->scale(100);
 
 ?>

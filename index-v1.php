@@ -4,7 +4,7 @@
 </head>
 <body>
 <?php
-echo '<h1>SDK1: Uncomment Code to see more</h1>';
+echo '<h1>Cloudinary SDK V1</h1>';
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -12,12 +12,13 @@ use \Cloudinary\Uploader;
 use \Cloudinary\Api;
 
 Cloudinary::config(array(
-    'cloud_name' => 'dec-2020-test',
-    'api_key' => '552265519859882',
-    'api_secret' => 'zrs73txUXMnsO93hWxeiRWpTOFw'
+    'cloud_name' => 'CLOUD_NAME',
+    'api_key' => 'API_KEY',
+    'api_secret' => 'API_SECRET'
 ));
 
 // Upload API
+echo '<h2>Upload API Response</h2>';
 $upload = new Uploader();
 echo '<pre>';
 print_r($upload::upload("https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png",
@@ -26,9 +27,10 @@ echo '</pre>';
 
 
 // Admin API
+echo '<h2>Admin API Response </h2>';
 $api = new Api();
 echo '<pre>';
-print_r($api->resources());
+echo json_encode($api->resources(["max_results" => 1]),JSON_PRETTY_PRINT);
 echo '</pre>';
 
 
@@ -52,6 +54,7 @@ $url =  cloudinary_url(
        ],
    ]
 );
+echo '<h2>Cloudinary URL</h2>';
 echo $url;
 echo '<br>';
 
@@ -76,7 +79,7 @@ $image = cl_image_tag(
    ]
 );
 
-
+echo '<h2>Cloudinary Image</h2>';
 echo $image;
 
 ?>
