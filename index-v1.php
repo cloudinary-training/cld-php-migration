@@ -18,15 +18,13 @@ use Cloudinary\Uploader;
 //        'api_secret' => 'API_SECRET',
 //    ]
 //);
-
 echo Cloudinary::config()["cloud_name"];
 
 // Upload API
 echo '<h2>Upload API Response</h2>';
-$upload = new Uploader();
 echo '<pre>';
 print_r(
-    $upload::upload(
+    Uploader::upload(
         "https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png",
         ['public_id' => 'cloudinary_icon_blue']
     )
@@ -34,14 +32,15 @@ print_r(
 echo '</pre>';
 
 
-// Admin API
-echo '<h2>Admin API Response </h2>';
+// Admin API Response
+echo '<h2>Admin API Response</h2>';
 $api = new Api();
+
 echo '<pre>';
 echo json_encode($api->resources(["max_results" => 1]), JSON_PRETTY_PRINT);
 echo '</pre>';
 
-
+echo '<h2>Cloudinary URL</h2>';
 $url = cloudinary_url(
     "sample",
     [

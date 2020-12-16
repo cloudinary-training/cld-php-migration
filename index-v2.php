@@ -26,18 +26,20 @@ use Cloudinary\Tag\ImageTag;
 echo Configuration::instance()->account->cloudName;
 
 // Upload API
-echo '<h2>Upload API</h2>';
-$upload = new UploadApi();
-//
+echo '<h2>Upload API Response</h2>';
+$uploader = new UploadApi();
 echo '<pre>';
 echo json_encode(
-    $upload->upload('https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png'),
+    $uploader->upload(
+        'https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png',
+        ['public_id' => 'cloudinary_icon_blue']
+    ),
     JSON_PRETTY_PRINT
 );
 echo '</pre>';
 
-// Admin api
-echo '<h2>Admin API</h2>';
+// Admin API Response
+echo '<h2>Admin API Response</h2>';
 $api = new AdminApi();
 
 echo '<pre>';
@@ -66,7 +68,9 @@ $url = Media::fromParams(
         ],
     ]
 );
+echo '<h2>Cloudinary URL</h2>';
 echo $url;
+echo '<br>';
 
 /**
  * @var ImageTag $image
