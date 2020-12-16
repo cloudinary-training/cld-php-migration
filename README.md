@@ -79,7 +79,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 ```
 2. Provide Cloudinary credentials.
 ```php
- \Cloudinary::config(array(
+ Cloudinary::config(array(
     'cloud_name' => 'CLOUD_NAME',
     'api_key' => 'API_KEY',
    'api_secret' => 'API_SECRET'
