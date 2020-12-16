@@ -276,9 +276,9 @@ echo $image;
 ```
 
 
-Resources:
+## Resources:
 
-[Cloudinary source code](https://github.com/cloudinary/cloudinary_php/blob/2.0.0-beta)
+[Cloudinary source code](https://github.com/cloudinary/cloudinary_php/blob/2.0.0-beta)  
 [Migration Guide](https://cloudinary.com/documentation/sdk2_migration)
 
 
