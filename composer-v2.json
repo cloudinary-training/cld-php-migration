@@ -11,7 +11,7 @@
     }
   ],
   "require": {
-    "cloudinary/cloudinary_php": ">2.0.0-beta",
+    "cloudinary/cloudinary_php": "^2",
     "ext-json": "*"
   }
 }
