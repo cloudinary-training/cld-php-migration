@@ -20,13 +20,13 @@
     use Cloudinary\Api;
     use Cloudinary\Uploader;
 
-    //Cloudinary::config(
+    // Cloudinary::config(
     //    [
     //        'cloud_name' => 'CLOUD_NAME',
     //        'api_key'    => 'API_KEY',
     //        'api_secret' => 'API_SECRET',
     //    ]
-    //);
+    // );
     echo Cloudinary::config()["cloud_name"];
 
     // Upload API
