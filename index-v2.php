@@ -42,7 +42,7 @@
 
     //Configuration::instance(
     //    [
-    //        'account' => [
+    //        'cloud' => [
     //            'cloud_name' => 'CLOUD_NAME',
     //            'api_key'    => 'API_KEY',
     //            'api_secret' => 'API_SECRET',
@@ -148,7 +148,8 @@
     // v2 transformation example
     echo '<h2>Sneak Peak</h2>';
     echo $image->scale(100);
-    echo '<br';
+    echo '<br>';
+
 
     ?>
 </body>
