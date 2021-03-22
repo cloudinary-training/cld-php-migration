@@ -2,3 +2,5 @@
 .env
 vendor/
 composer.lock
+config-v1.php
+config-v2.php

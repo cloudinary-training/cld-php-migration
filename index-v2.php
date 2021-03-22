@@ -15,6 +15,7 @@
     echo '<h1>Cloudinary SDK V2</h1>';
 
     require_once __DIR__ . '/vendor/autoload.php';
+    require_once __DIR__ . '/config-v2.php';
 
     use Cloudinary\Api\Admin\AdminApi;
     use Cloudinary\Api\Upload\UploadApi;
@@ -40,16 +41,7 @@
     use Cloudinary\Transformation\Quality;
     use Cloudinary\Transformation\Rotate;
 
-    //Configuration::instance(
-    //    [
-    //        'cloud' => [
-    //            'account' => 'CLOUD_NAME',
-    //            'api_key'    => 'API_KEY',
-    //            'api_secret' => 'API_SECRET',
-    //        ],
-    //    ]
-    //);
-
+  
     echo Configuration::instance()->cloud->cloudName;
 
     // Upload API

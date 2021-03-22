@@ -49,11 +49,45 @@ To server the web pages in this tutorial you can use:
 
 
 ### Credentials  
-There are many ways that you can provide the CLOUDINARY_URL credentials `CLOUD_NAME`, `API_KEY`, and `API_SECRET` to your environment.  In this tutorial, we'll use a bash export command.  You can get your CLOUDINARY_URL from the Cloudinary console.
+There are many ways that you can provide the CLOUDINARY_URL credentials `CLOUD_NAME`, `API_KEY`, and `API_SECRET` to your environment.  
 
-```
+In this tutorial, we will be create an external config file and import it into the PHP script.  You will find 2 sample config files, one for each version.  You can see below that the library for Configuration in V2 needs to be imported, and the command to read in the credentials is different.
+
+For SDK V1 your config:
+```php
+<?php
+
+Cloudinary::config(
+ [
+  'cloud_name' => 'CLOUD_NAME',
+  'api_key'    => 'API_KEY',
+  'api_secret' => 'API_SECRET',
+ ]
+);
+
+```  
+
+For SDK V2 your config:
+```php
+<?php
+use Cloudinary\Configuration\Configuration;
+
+Configuration::instance(
+    [
+        'cloud_name' => 'pictures77',
+        'api_key'    => '326563836554386',
+        'api_secret' => 'YSRNq4Q3gkcQ-5kDx-rQ5F-Xi8w',
+    ]
+);
+
+#### Export Environment Variable
+
+You can also export the Cloudinary URL as an environment variable. This will configure a single instance of the cloud. You can get your CLOUDINARY_URL from the Cloudinary console.
+
+```bash
 export CLOUDINARY_URL=cloudinary://<api_key>:<api_secret>@<cloud_name>
 ```
+
 
 The Cloudinary PHP V2 provides 2 different methods for instantiating Cloudinary: 
 1. A **constructor** method will allow for the creation of multiple instances of Cloudinary which enables the developer to access multiple clouds 
@@ -64,6 +98,7 @@ For the purposes of migration, we will be using the static **instance** method t
 
 The goal of this migration guide is to simplify migration. Therefore, we'll be demonstrating simple techniques for modifying existing V1 code to make it V2 compliant.  
 
+**NOTE:** The config files will contain information that is SECRET.  Be sure to `.gitignore` and config files set up like this.
 
 ### Course File Contents
 The files that we'll be focusing on in this migration exercise are:
@@ -113,23 +148,20 @@ To install the PHP SDK execute the following:
 composer update
 ```
 
+or 
+
+```bash
+composer require "cloudinary/cloudinary_php:^1"
+```
+
 With the V1 package installed, you should be able to run the [index-v1.php]("./index-v1.php") web page and view in your browser.
 This syntax and the functions used should look familiar to a Cloudinary PHP developer and are provided as a baseline for migrating the code.
 
 
 1. Load dependencies.
 
-2. Provide Cloudinary credentials if not made available in environment already.  We've put the export command in a .env file, so this can be run before executing the script.
+2. Provide Cloudinary credentials as described above in the external config file.
 
-```bash
-. ./.env
-```
-
-3. Create the single instance for the CLOUD_NAME in your script.
-
-```php
-Configuration::instance();
-```
 
 3. Upload a Cloudinary Logo using the Upload API and view upload response on web page.
 ```php

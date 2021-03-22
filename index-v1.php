@@ -15,19 +15,12 @@
     echo '<h1>Cloudinary SDK V1</h1>';
 
     require_once __DIR__ . '/vendor/autoload.php';
-
+    require_once __DIR__ . '/config-v1.php';
+    //verify cloud name
+    echo Cloudinary::config()["cloud_name"];
    
     use Cloudinary\Api;
     use Cloudinary\Uploader;
-
-    // Cloudinary::config(
-    //    [
-    //        'cloud_name' => 'CLOUD_NAME',
-    //        'api_key'    => 'API_KEY',
-    //        'api_secret' => 'API_SECRET',
-    //    ]
-    // );
-    echo Cloudinary::config()["cloud_name"];
 
     // Upload API
     echo '<h2>Upload API Response</h2>';
@@ -45,7 +38,7 @@
     echo '<h2>Admin API Response </h2>';
     $api = new Api();
     echo '<pre>';
-    echo json_encode($api->resources(["max_results" => 1]), JSON_PRETTY_PRINT);
+    echo json_encode($api->resource('cloudinary_icon_blue'), JSON_PRETTY_PRINT);
     echo '</pre>';
 
 
@@ -84,7 +77,7 @@
     echo $url;
     echo '<br>';
 
-    $image = cl_image_tag(
+    $imageTag = cl_image_tag(
         "sample",
         [
             "secure"         => true,
@@ -117,7 +110,8 @@
     );
 
     echo '<h2>Cloudinary Image</h2>';
-    echo $image;
+    echo '<pre>' . htmlspecialchars($imageTag) . '</pre>';
+    echo $imageTag;
 
 
     ?>
