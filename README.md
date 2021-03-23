@@ -74,9 +74,9 @@ use Cloudinary\Configuration\Configuration;
 
 Configuration::instance(
     [
-        'cloud_name' => 'pictures77',
-        'api_key'    => '326563836554386',
-        'api_secret' => 'YSRNq4Q3gkcQ-5kDx-rQ5F-Xi8w',
+        'cloud_name' => 'CLOUD_NAME',
+        'api_key'    => 'API_KEY',
+        'api_secret' => 'API_SECRET',
     ]
 );
 
