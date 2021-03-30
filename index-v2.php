@@ -45,29 +45,26 @@
     echo Configuration::instance()->cloud->cloudName;
 
     // Upload API
-    echo '<h2>Upload API</h2>';
+    echo '<h2>Upload API Response</h2>';
     $upload = new UploadApi();
     //
     echo '<pre>';
     echo json_encode(
-        $upload->upload('https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png'),
+        $upload->upload('https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png',
+        ['public_id' => 'cloudinary_icon_blue']),
         JSON_PRETTY_PRINT
     );
     echo '</pre>';
 
     // Admin api
-    echo '<h2>Admin API</h2>';
+    echo '<h2>Admin API Response</h2>';
     $api = new AdminApi();
 
     echo '<pre>';
-    echo json_encode($api->assets(['max_results' => 1]), JSON_PRETTY_PRINT) . "\n";
+    echo json_encode($api->asset('cloudinary_icon_blue'), JSON_PRETTY_PRINT) . "\n";
     echo '</pre>';
 
     echo '<h2>Cloudinary URL</h2>';
-
-    // $imageTag = ImageTag::fromParams()  cl_image_tag
-    // $videoTag = VideoTag::fromParams()  cl_video_tag
-
     $url = Media::fromParams(
         "sample",
         [
@@ -99,9 +96,11 @@
             ],
         ]
     );
+  
     echo $url;
 
-    $image = ImageTag::fromParams(
+    echo '<h2>Cloudinary Image</h2>';
+    $imageTag = ImageTag::fromParams(
         "sample",
         [
             "secure"         => true,
@@ -133,8 +132,8 @@
         ]
     );
 
-    echo '<h2>Cloudinary Image</h2>';
-    echo $image;
+    echo '<pre>' . htmlspecialchars($imageTag) . '</pre>';
+    echo $imageTag;
     echo '<br>';
 
     // v2 transformation example

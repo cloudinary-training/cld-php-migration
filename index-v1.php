@@ -25,11 +25,12 @@
     // Upload API
     echo '<h2>Upload API Response</h2>';
     echo '<pre>';
-    print_r(
+    echo json_encode(
         Uploader::upload(
             "https://cloudinary-training.github.io/cld-php-migration/images/cloudinary_icon_blue.png",
             ['public_id' => 'cloudinary_icon_blue']
-        )
+        ),
+        JSON_PRETTY_PRINT
     );
     echo '</pre>';
 
@@ -41,7 +42,7 @@
     echo json_encode($api->resource('cloudinary_icon_blue'), JSON_PRETTY_PRINT);
     echo '</pre>';
 
-
+    echo '<h2>Cloudinary URL</h2>';
     $url = cloudinary_url(
         "sample",
         [
@@ -73,10 +74,11 @@
             ],
         ]
     );
-    echo '<h2>Cloudinary URL</h2>';
+  
     echo $url;
     echo '<br>';
 
+    echo '<h2>Cloudinary Image</h2>';
     $imageTag = cl_image_tag(
         "sample",
         [
@@ -109,7 +111,7 @@
         ]
     );
 
-    echo '<h2>Cloudinary Image</h2>';
+
     echo '<pre>' . htmlspecialchars($imageTag) . '</pre>';
     echo $imageTag;
 
