@@ -2,7 +2,7 @@
 
 use Cloudinary\Configuration\Configuration;
 
-Cloudinary::config(
+Configuration::instance(
  [
    "cloud" =>
    [
