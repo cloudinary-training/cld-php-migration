@@ -114,7 +114,10 @@ $imageTag = cl_image_tag(
 
 echo $imageTag;
 echo '<pre>' . htmlspecialchars($imageTag) . '</pre>';
-
+echo '<br>';
+echo '<br>';
+echo '<br>';
+echo '<br>';
 
 ?>
 </body>

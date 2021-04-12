@@ -134,7 +134,10 @@ echo $imageTag->scale(100);
 echo '<br>';
 
 echo '<pre>' . htmlspecialchars($imageTag) . '</pre>';
-
+echo '<br>';
+echo '<br>';
+echo '<br>';
+echo '<br>';
 ?>
 </body>
 
