@@ -74,11 +74,15 @@ use Cloudinary\Configuration\Configuration;
 
 Configuration::instance(
     [
-        'cloud_name' => 'CLOUD_NAME',
-        'api_key'    => 'API_KEY',
-        'api_secret' => 'API_SECRET',
+        "cloud" =>
+            [
+                'cloud_name' => 'CLOUD_NAME',
+                'api_key'    => 'API_KEY',
+                'api_secret' => 'API_SECRET',
+            ],
     ]
 );
+
 
 #### Export Environment Variable
 
@@ -225,7 +229,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 2. Provide Cloudinary credentials and set up instances of Cloudinary.
 ```php
-echo Configuration::instance()->account->cloudName;
+echo Configuration::instance()->cloud->cloudName;
 ```
 
 3. Upload a Cloudinary Logo using the Upload API and view upload response on the web page.  The V2 is object oriented and name-spaced.  You will need to import classes with the `use` command.
